@@ -29,6 +29,22 @@ const gamesContainer = document.getElementById("games-container");
 function addGamesToPage(games) {
 
     // loop over each item in the data
+    for (let i = 0; i < GAMES_JSON; i++) {
+        const gameCard = document.createElement('div');
+        
+        GAMES_JSON.push(document.getElementById("game-card"));
+
+        const getHTML = games => GAMES_DATA.unescpace(games).replace('\\','');
+
+        // i HIGHLY doubt this works... (dont really understand hwo to do template literal)
+        const html = GAMES_DATA.escape('<div> testing </div>');
+
+        const template = '<div> ${getHTML(html)} </div>';
+
+        gamesContainer.innterHTML = template;
+
+        gamesContainer.append(html)
+    }
 
 
         // create a new div element, which will become the game card
@@ -61,7 +77,12 @@ function addGamesToPage(games) {
 const contributionsCard = document.getElementById("num-contributions");
 
 // use reduce() to count the number of total contributions by summing the backers
+contributionsCard.reduce(backers, 0);
 
+function backers(total, num){
+    return total + Math.round(num);
+}
+    
 
 // set the inner HTML using a template literal and toLocaleString to get a number with commas
 
@@ -87,7 +108,7 @@ function filterUnfundedOnly() {
     deleteChildElements(gamesContainer);
 
     // use filter() to get a list of games that have not yet met their goal
-
+    
 
     // use the function we previously created to add the unfunded games to the DOM
 
